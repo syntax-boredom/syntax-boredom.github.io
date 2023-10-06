@@ -1,9 +1,9 @@
 body {
-            background: red;
+            background: #4B0082;
             display: flex;
             align-items: center;
             height: 10vh;
             margin: 0;
             font-family: Comic Sans MS;
-            text-color: Violet
+            text-color: #FF69B4;
         }
