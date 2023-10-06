@@ -4,3 +4,9 @@ body {
             font-family: Comic Sans MS;
             text-align: center;
         }
+.pages {
+            background-color: white;
+            display: block;
+            width: 25%;
+            
+}
