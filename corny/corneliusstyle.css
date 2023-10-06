@@ -1,1 +1,8 @@
-
+body {
+            background: #red;
+            display: flex;
+            align-items: center;
+            height: 10vh;
+            margin: 0;
+            font-family: Comic Sans MS;
+        }
