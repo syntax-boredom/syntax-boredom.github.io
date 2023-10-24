@@ -2,8 +2,9 @@ body {
             background-colour: #ff00d3;
             height: 5px;
             font-family: Comic Sans MS;
-            text-colour: #16ff00;
+            
         }
 h1 {
-            color: red;
-}
+            color: #16ff00;
+             }
+h2 {color: #16ff00;}
