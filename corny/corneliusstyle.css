@@ -1,9 +1,9 @@
 body {
-            background: #B200C4;
+            background: #ff00d3;
             display: flex;
             align-items: center;
-            height: 10vh;
+            height: 10px;
             margin: 0;
             font-family: Comic Sans MS;
-            text-color: #08FF01;
+            text-color: #16ff00;
         }
