@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     // Function to fetch the count from the JSON file
     async function fetchCount() {
         try {
-            const response = await fetch("https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO_NAME/main/json/counter.json");
+            const response = await fetch("https://raw.githubusercontent.com/syntax-boredom/syntax-boredom.github.io/main/json/counter.json");
             const jsonData = await response.json();
 
             return jsonData.count || 0;
