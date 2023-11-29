@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     // Function to fetch the count from the JSON file
     async function fetchCount() {
         try {
-            const response = await fetch("path/to/counter.json");
+            const response = await fetch("json/counter.json");
             const jsonData = await response.json();
 
             // Extract the count from the JSON data
