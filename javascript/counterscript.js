@@ -9,10 +9,9 @@ document.addEventListener("DOMContentLoaded", async function () {
     // Function to fetch the count from the JSON file
     async function fetchCount() {
         try {
-            const response = await fetch("json/counter.json");
+            const response = await fetch("https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO_NAME/main/json/counter.json");
             const jsonData = await response.json();
 
-            // Extract the count from the JSON data
             return jsonData.count || 0;
         } catch (error) {
             console.error("Error fetching count:", error);
@@ -24,18 +23,17 @@ document.addEventListener("DOMContentLoaded", async function () {
     // Function to update the count in the JSON file
     async function updateCount(newCount) {
         try {
-            const response = await fetch("json/counter.json", {
-                method: "PUT", // Use the appropriate HTTP method for updating files
+            const jsonData = { count: newCount };
+            await fetch("https://raw.githubusercontent.com/syntax-boredom/syntax-boredom.github.io/main/json/counter.json", {
+                method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ count: newCount }),
+                body: JSON.stringify(jsonData),
             });
 
-            if (response.ok) {
-                count = newCount;
-                updateCounterText();
-            }
+            count = newCount;
+            updateCounterText();
         } catch (error) {
             console.error("Error updating count:", error);
         }
