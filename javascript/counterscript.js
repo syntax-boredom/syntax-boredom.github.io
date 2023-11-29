@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     // Function to update the count in the JSON file
     async function updateCount(newCount) {
         try {
-            const response = await fetch("path/to/counter.json", {
+            const response = await fetch("json/counter.json", {
                 method: "PUT", // Use the appropriate HTTP method for updating files
                 headers: {
                     "Content-Type": "application/json",
