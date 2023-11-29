@@ -1,8 +1,38 @@
-body {
-  background-image: linear-gradient(#727e85, #ccd4d8);
-  font-family: "Comic Sans MS";
-  text-align: center;
+@import url(https://fonts.googleapis.com/css?family=Exo:100);
+/* Background data (Original source: https://subtlepatterns.com/grid-me/) */
+/* Animations */
+
+@keyframes bg-scrolling-reverse {
+  100% {
+    background-position: 50px -50px;
+  }
 }
+
+@keyframes bg-scrolling {
+  0% {
+    background-position: 50px -50px;
+  }
+}
+
+/* Main styles */
+body {
+  margin-top: 13.5rem;
+  color: #999;
+  font: 400 16px/1.5 exo, ubuntu, "segoe ui", helvetica, arial, sans-serif;
+  text-align: center;
+  /* img size is 50x50 */
+  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAIAAACRXR/mAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAABnSURBVHja7M5RDYAwDEXRDgmvEocnlrQS2SwUFST9uEfBGWs9c97nbGtDcquqiKhOImLs/UpuzVzWEi1atGjRokWLFi1atGjRokWLFi1atGjRokWLFi1af7Ukz8xWp8z8AAAA//8DAJ4LoEAAlL1nAAAAAElFTkSuQmCC") repeat 0 0; /* Safari 4+ */ /* Fx 5+ */ /* Opera 12+ */
+  animation: bg-scrolling-reverse 0.92s infinite; /* IE 10+ */
+  animation-timing-function: linear;
+}
+
+body::before {
+  content: "syntax-boredom";
+  font-size: 8rem;
+  font-weight: 100;
+  font-style: normal;
+}/*# sourceMappingURL=teststyle.css.map */
+
 .button {
   background-color: #ccd4d8;
   color: black;
@@ -11,11 +41,12 @@ body {
   cursor: pointer;
   transition-duration: 0.42s;
   font-size: 16px;
-  margin: 40px 20px;
+  margin: 4px 2px;
   padding: 16px 32px;
   text-align: center;
   text-decoration-line: none;
 }
+
 .button:hover {
   background-color: #9da3a5;
   color: white;
