@@ -27,7 +27,7 @@ body {
 }
 
 body::before {
-  content: "syntax-boredom";
+  content: "PABLO'S PLACE";
   font-size: 8rem;
   font-weight: 100;
   font-style: normal;
@@ -41,7 +41,7 @@ body::before {
   cursor: pointer;
   transition-duration: 0.42s;
   font-size: 16px;
-  font-weight: monospace;
+  font-family: monospace;
   margin: 4px 2px;
   padding: 16px 32px;
   text-align: center;
