@@ -1,59 +1,35 @@
-document.addEventListener("DOMContentLoaded", async function () {
-    const counterButton = document.getElementById("counterButton");
+// Function to fetch the count from the Gist
+async function fetchCount() {
+    try {
+        const response = await fetch("https://gist.githubusercontent.com/syntax-boredom/84c467d185726e27ce0ca57232646955/raw/counter.json");
+        const jsonData = await response.json();
 
-    // Function to update the counter text
-    function updateCounterText() {
-        counterButton.innerText = `This Button has been clicked ${count} times.`;
+        return jsonData.count || 0;
+    } catch (error) {
+        console.error("Error fetching count:", error);
     }
 
-    // Function to fetch the count from the JSON file
-    async function fetchCount() {
-        try {
-            const response = await fetch("https://raw.githubusercontent.com/syntax-boredom/syntax-boredom.github.io/main/json/counter.json");
-            const jsonData = await response.json();
+    return 0;
+}
 
-            return jsonData.count || 0;
-        } catch (error) {
-            console.error("Error fetching count:", error);
-        }
+// Function to update the count in the Gist
+async function updateCount(newCount) {
+    try {
+        const gistData = {
+            count: newCount,
+        };
 
-        return 0;
-    }
+        await fetch("https://gist.githubusercontent.com/syntax-boredom/84c467d185726e27ce0ca57232646955/raw/counter.json", {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(gistData),
+        });
 
-    // Function to update the count in the JSON file
-    async function updateCount(newCount) {
-        try {
-            const jsonData = { count: newCount };
-            await fetch("https://raw.githubusercontent.com/syntax-boredom/syntax-boredom.github.io/main/json/counter.json", {
-                method: "PUT",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(jsonData),
-            });
-
-            count = newCount;
-            updateCounterText();
-        } catch (error) {
-            console.error("Error updating count:", error);
-        }
-    }
-
-    // Initialize count from the JSON file
-    count = await fetchCount();
-
-    // Display the initial count
-    updateCounterText();
-
-    // Event listener for button click
-    counterButton.addEventListener("click", async function () {
-        // Increase the count
-        count++;
-
-        // Update the counter text
+        count = newCount;
         updateCounterText();
-
-        // Update the count in the JSON file
-        await updateCount(count);
-    });
-});
+    } catch (error) {
+        console.error("Error updating count:", error);
+    }
+}
