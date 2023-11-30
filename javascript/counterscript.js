@@ -6,10 +6,10 @@ document.addEventListener("DOMContentLoaded", async function () {
         counterButton.innerText = `This Button has been clicked ${count} times.`;
     }
 
-    // Function to fetch the count from the Gist
+    // Function to fetch the count from the JSON file
     async function fetchCount() {
         try {
-            const response = await fetch("https://gist.githubusercontent.com/syntax-boredom/84c467d185726e27ce0ca57232646955/raw/counter.json");
+            const response = await fetch("json/counter.json"); // Update the path to your JSON file
             const jsonData = await response.json();
 
             return jsonData.count || 0;
@@ -20,19 +20,19 @@ document.addEventListener("DOMContentLoaded", async function () {
         return 0;
     }
 
-    // Function to update the count in the Gist
+    // Function to update the count in the JSON file
     async function updateCount(newCount) {
         try {
-            const gistData = {
+            const jsonData = {
                 count: newCount,
             };
 
-            await fetch("https://gist.githubusercontent.com/syntax-boredom/84c467d185726e27ce0ca57232646955/raw/counter.json", {
-                method: "PUT",
+            await fetch("json/counter.json", {
+                method: "PUT", // Use the appropriate HTTP method for updating files
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify(gistData),
+                body: JSON.stringify(jsonData),
             });
 
             count = newCount;
@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         }
     }
 
-    // Initialize count from the Gist
+    // Initialize count from the JSON file
     let count = await fetchCount();
 
     // Display the initial count
@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         // Increase the count by 1
         count++;
 
-        // Update the count in the Gist
+        // Update the count in the JSON file
         await updateCount(count);
     });
 });
