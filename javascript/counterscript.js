@@ -1,35 +1,58 @@
-// Function to fetch the count from the Gist
-async function fetchCount() {
-    try {
-        const response = await fetch("https://gist.githubusercontent.com/syntax-boredom/84c467d185726e27ce0ca57232646955/raw/counter.json");
-        const jsonData = await response.json();
+document.addEventListener("DOMContentLoaded", async function () {
+    const counterButton = document.getElementById("counterButton");
 
-        return jsonData.count || 0;
-    } catch (error) {
-        console.error("Error fetching count:", error);
+    // Function to update the counter text
+    function updateCounterText() {
+        counterButton.innerText = `This Button has been clicked ${count} times.`;
     }
 
-    return 0;
-}
+    // Function to fetch the count from the Gist
+    async function fetchCount() {
+        try {
+            const response = await fetch("https://gist.githubusercontent.com/syntax-boredom/84c467d185726e27ce0ca57232646955/raw/counter.json");
+            const jsonData = await response.json();
 
-// Function to update the count in the Gist
-async function updateCount(newCount) {
-    try {
-        const gistData = {
-            count: newCount,
-        };
+            return jsonData.count || 0;
+        } catch (error) {
+            console.error("Error fetching count:", error);
+        }
 
-        await fetch("https://gist.githubusercontent.com/syntax-boredom/84c467d185726e27ce0ca57232646955/raw/counter.json", {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(gistData),
-        });
-
-        count = newCount;
-        updateCounterText();
-    } catch (error) {
-        console.error("Error updating count:", error);
+        return 0;
     }
-}
+
+    // Function to update the count in the Gist
+    async function updateCount(newCount) {
+        try {
+            const gistData = {
+                count: newCount,
+            };
+
+            await fetch("https://gist.githubusercontent.com/syntax-boredom/84c467d185726e27ce0ca57232646955/raw/counter.json", {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(gistData),
+            });
+
+            count = newCount;
+            updateCounterText();
+        } catch (error) {
+            console.error("Error updating count:", error);
+        }
+    }
+
+    let count = await fetchCount();
+
+    // Display the initial count
+    updateCounterText();
+
+    // Event listener for button click
+    counterButton.addEventListener("click", async function () {
+        // Increase the count by 1
+        count++;
+
+        // Update the count in the Gist
+        await updateCount(count);
+    });
+});
