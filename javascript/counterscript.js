@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Function to update the counter text
     function updateCounterText() {
-        counterButton.innerText = `This Button has been clicked ${count} times.`;
+        counterButton.innerText = `This Button has been clicked ${count} times by you.`;
     }
 
     // Event listener for button click
