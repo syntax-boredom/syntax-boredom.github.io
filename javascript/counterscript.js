@@ -36,12 +36,15 @@ document.addEventListener("DOMContentLoaded", async function () {
             });
 
             count = newCount;
+
+            // Display the updated count
             updateCounterText();
         } catch (error) {
             console.error("Error updating count:", error);
         }
     }
 
+    // Initialize count from the Gist
     let count = await fetchCount();
 
     // Display the initial count
