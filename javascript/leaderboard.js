@@ -42,9 +42,17 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
 
     async function fetchLeaderboardData() {
-        const response = await fetch("https://raw.githubusercontent.com/syntax-boredom/syntax-boredom.github.io/main/json/leaderboard.json");
-        return await response.json();
+    try {
+        const response = await fetch("json/leaderboard.json");  // Update the path
+        const jsonData = await response.json();
+
+        return jsonData || [];
+        } catch (error) {
+        console.error("Failed to fetch leaderboard data:", error);
+        return [];
+        }
     }
+
 
     async function updateLeaderboardData(newData) {
         const response = await fetch("https://api.github.com/repos/syntax-boredom/syntax-boredom.github.io/contents/json/leaderboard.json", {
