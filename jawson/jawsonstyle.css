@@ -1,3 +1,7 @@
+body {
+  font-size: 32px;
+  color: black;
+}
 .leftGame {
   font-size: 16px;
   color: yellow;
